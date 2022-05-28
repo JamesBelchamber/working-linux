@@ -1,0 +1,27 @@
+name: build
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: docker.io/fedora:latest
+      options: --privileged --security-opt label:disable
+    steps:
+      - name: Install dependencies
+        run: dnf install -y rpm-ostree selinux-policy selinux-policy-targeted policycoreutils git wget rsync
+
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Build OSTree
+        run: |
+            mkdir -p cache repo/workstation
+            ostree --repo=repo/workstation init --mode=archive
+            rpm-ostree compose tree --unified-core --cachedir=cache --repo=repo/workstation fedora-silverblue.yaml
+            ostree --repo=repo/workstation summary --update
+        
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: gh-pages
+          folder: repo
