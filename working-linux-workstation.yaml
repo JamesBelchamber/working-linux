@@ -23,6 +23,7 @@ packages:
   # Added based on Workstation
   - gnome-disk-utility
   - firefox
+  - fedora-bookmarks
   - yelp
   - gnome-tour
   - gnome-photos
