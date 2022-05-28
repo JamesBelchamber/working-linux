@@ -21,7 +21,6 @@ packages:
   - glib-networking
   - gnome-backgrounds
   - gnome-bluetooth
-  - gnome-classic-session
   - gnome-color-manager
   - gnome-control-center
   - gnome-initial-setup

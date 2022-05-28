@@ -12,6 +12,7 @@ exclude_list_groups:
   - libreoffice
   - gnome-desktop
   - container-management
+  - firefox
 
 # PackageKit is spread across various groups
 # We can not include openh264. See https://fedoraproject.org/wiki/OpenH264
@@ -169,9 +170,9 @@ desktop_exclude_list:
     - traceroute
     # Removing for minimal image, re-added in Workstation
     - gnome-disk-utility
-    - firefox
     - yelp
     - gnome-tour
+    - gnome-classic-session
     - gnome-shell-extension-apps-menu
     - gnome-shell-extension-background-logo
     - gnome-shell-extension-common
