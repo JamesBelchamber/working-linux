@@ -1,81 +1,58 @@
-# Manifests for rpm-ostree based Fedora variants
+# Working Linux
 
-This is the configuration needed to create
-[rpm-ostree](https://coreos.github.io/rpm-ostree/) based variants of Fedora.
-Each variant is described in a YAML
-[treefile](https://coreos.github.io/rpm-ostree/treefile/) which is then used by
-rpm-ostree to compose an ostree commit with the package requested.
+Working Linux is a light-touch rebuild of [Fedora Silverblue](https://silverblue.fedoraproject.org/) with the following goals:
 
-In the Fedora infrastructure, this happens via
-[pungi](https://pagure.io/pungi-fedora) with
-[Lorax](https://github.com/weldr/lorax)
-([templates](https://pagure.io/fedora-lorax-templates)).
+- Building a Workstation image that closely tracks Fedora Workstation (for new users 😁)
+- Building a Minimal image containing only essential applications (for power users 😎)
 
-## Fedora Silverblue
+New users will see the real power of Silverblue's unique combination of flatpaks and rpm-ostree in delivering a capable replacement for Fedora Workstation, leveraging modern Flatpaks alongside mature RPMs. Power users can pick and choose what to layer on their own, without having unwanted applications in their base image.
 
-- Website: https://silverblue.fedoraproject.org/ ([sources](https://github.com/fedora-silverblue/silverblue-site))
-- Documentation: https://docs.fedoraproject.org/en-US/fedora-silverblue/ ([sources](https://github.com/fedora-silverblue/silverblue-docs))
-- Issue tracker: https://github.com/fedora-silverblue/issue-tracker/issues
+## Installation
 
-## Fedora Kinoite
+Working Linux is an alternative image for Fedora Silverblue, so be sure to [install Silverblue](https://silverblue.fedoraproject.org/download) first. Once done, open up a Terminal and run the following commands:
 
-- Website: https://kinoite.fedoraproject.org/ ([sources](https://pagure.io/fedora-kde/kinoite-site))
-- Documentation: https://docs.fedoraproject.org/en-US/fedora-kinoite/ ([sources](https://pagure.io/fedora-kde/kinoite-docs))
-- Issue tracker: https://pagure.io/fedora-kde/SIG/issues
+```bash
+sudo ostree remote add --no-gpg-verify working-linux https://jamesbelchamber.github.io/working-linux
 
-## Building
-
-Instructions to perform a local build of Silverblue:
-
-```
-# Clone the config
-git clone https://pagure.io/workstation-ostree-config && cd workstation-ostree-config
-
-# Prepare repo & cache
-mkdir -p repo cache && ostree --repo=repo init --mode=archive
-
-# Build (compose) the variant of your choice
-sudo rpm-ostree compose tree --repo=repo --cachedir=cache fedora-silverblue.yaml
-
-# Update summary file
-ostree summary --repo=repo --update
+rpm-ostree rebase working-linux:working-linux/36/x86_64/workstation
 ```
 
-## Testing
+To install the minimal image just change `workstation` to `minimal` in the rebase.
 
-Instructions to test the resulting build:
+## Differences vs Fedora Silverblue
 
-- First, serve the ostree repo using an HTTP server.
-- Then, on an already installed Silverblue system:
+| Application      | Minimal | Silverblue | Workstation |
+|------------------|---------|------------|-------------|
+| Firefox          | ❌       | ✅          | ✅           |
+| GNOME Disks      | ❌       | ✅          | ✅           |
+| GNOME Tour       | ❌       | ✅          | ✅           |
+| GNOME Help       | ❌       | ✅          | ✅           |
+| GNOME Photos     | ❌       | ❌          | ✅           |
+| Gnome Videos     | ❌       | ❌          | ✅           |
+| Document Scanner | ❌       | ❌          | ✅           |
+| Rhythmbox        | ❌       | ❌          | ✅           |
+| Cheese           | ❌       | ❌          | ✅           |
 
-```
-# Add an ostree remote
-sudo ostree remote add testremote http://<IP_ADDRESS>/repo
+## Documentation and Help
 
-# Pin the currently deployed (and probably working) version
-sudo ostree admin pin 0
+- For documentation, please refer to the official docs:
+  - [Fedora Silverblue](https://docs.fedoraproject.org/en-US/fedora-silverblue/)
+  - [Fedora Workstation](https://docs.fedoraproject.org/en-US/fedora/latest/)
+- For help, use the official channels:
+  - Fedora Discussion ([#silverblue](https://discussion.fedoraproject.org/tag/silverblue))
+  - Libera Chat ([#silverblue](https://web.libera.chat/#silverblue))
+  - Matrix ([#silverblue:fedoraproject.org](https://matrix.to/#/#silverblue:fedoraproject.org))
+- If you think there's an issue specific to Working Linux, reach out to me on Matrix ([@jamesbelchamber:matrix.org](https://matrix.to/#/@jamesbelchamber:matrix.org))
 
-# List refs from variant remote
-sudo ostree remote refs testremote
+## Contributing
+Pull requests are welcome, but only in pursuit of the project goals:
 
-# Switch to your variant
-sudo rpm-ostree rebase testremote:fedora/35/x86_64/silverblue
-```
+- ✅ A change to the Workstation image to better align with Fedora Workstation
+- ✅ A change to the Minimal image to remove unnecessary packages
+- ❌ A change to the Workstation image that deviates from Fedora Workstation
+  - Raise the issue with the [Fedora Workstation Working Group](https://docs.fedoraproject.org/en-US/workstation-working-group/)
+- ❌ A change to the unique Silverblue components (e.g. `rpm-ostree`)
+  - Raise the issue with [Team Silverblue](https://github.com/fedora-silverblue/issue-tracker/issues)
 
-## Historical references
-
-Building and testing instructions:
-
-- https://dustymabe.com/2017/10/05/setting-up-an-atomic-host-build-server/
-- https://dustymabe.com/2017/08/08/how-do-we-create-ostree-repos-and-artifacts-in-fedora/
-- https://www.projectatomic.io/blog/2017/12/compose-custom-ostree/
-- https://www.projectatomic.io/docs/compose-your-own-tree/
-
-For some background, see:
-
-- <https://fedoraproject.org/wiki/Workstation/AtomicWorkstation>
-- <https://fedoraproject.org/wiki/Changes/WorkstationOstree>
-- <https://fedoraproject.org/wiki/Changes/Silverblue>
-- <https://fedoraproject.org/wiki/Changes/Fedora_Kinoite>
-
-Note also this repo obsoletes https://pagure.io/atomic-ws
+## License
+[MIT](https://choosealicense.com/licenses/mit/)

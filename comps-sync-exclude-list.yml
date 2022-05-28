@@ -167,3 +167,8 @@ desktop_exclude_list:
     - totem
     - totem-nautilus
     - traceroute
+    # Removing for minimal image, re-added in Workstation
+    - gnome-disk-utility
+    - firefox
+    - yelp
+    - gnome-tour

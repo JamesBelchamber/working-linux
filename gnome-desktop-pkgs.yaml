@@ -24,7 +24,6 @@ packages:
   - gnome-classic-session
   - gnome-color-manager
   - gnome-control-center
-  - gnome-disk-utility
   - gnome-initial-setup
   - gnome-remote-desktop
   - gnome-session-wayland-session
@@ -62,4 +61,3 @@ packages:
   - xdg-desktop-portal-gnome
   - xdg-desktop-portal-gtk
   - xdg-user-dirs-gtk
-  - yelp

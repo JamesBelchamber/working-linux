@@ -1,8 +1,8 @@
 include: gnome-desktop-pkgs.yaml
-ref: fedora/36/${basearch}/silverblue
+ref: working-linux/36/${basearch}/minimal
 rojig:
-  name: fedora-silverblue
-  summary: "Fedora Silverblue base image"
+  name: working-linux-minimal
+  summary: "Working Linux Minimal base image"
   license: MIT
 packages:
   - fedora-release-silverblue
