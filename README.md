@@ -21,17 +21,102 @@ To install the minimal image just change `workstation` to `minimal` in the rebas
 
 ## Differences vs Fedora Silverblue
 
-| Application      | Minimal | Silverblue | Workstation |
-|------------------|---------|------------|-------------|
-| Firefox          | ❌       | ✅          | ✅           |
-| GNOME Disks      | ❌       | ✅          | ✅           |
-| GNOME Tour       | ❌       | ✅          | ✅           |
-| GNOME Help       | ❌       | ✅          | ✅           |
-| GNOME Photos     | ❌       | ❌          | ✅           |
-| Gnome Videos     | ❌       | ❌          | ✅           |
-| Document Scanner | ❌       | ❌          | ✅           |
-| Rhythmbox        | ❌       | ❌          | ✅           |
-| Cheese           | ❌       | ❌          | ✅           |
+### Summary
+
+| Application             | Minimal | Silverblue | Workstation |
+|-------------------------|---------|------------|-------------|
+| Firefox                 | ❌       | ✅          | ✅           |
+| GNOME Disks             | ❌       | ✅          | ✅           |
+| GNOME Tour              | ❌       | ✅          | ✅           |
+| GNOME Help              | ❌       | ✅          | ✅           |
+| GNOME Shell Extensions* | ❌       | ✅          | ✅           |
+| GNOME Photos            | ❌       | ❌          | ✅           |
+| Gnome Videos            | ❌       | ❌          | ✅           |
+| Document Scanner        | ❌       | ❌          | ✅           |
+| Rhythmbox               | ❌       | ❌          | ✅           |
+| Cheese                  | ❌       | ❌          | ✅           |
+| Problem Reporting       | ❌       | ❌          | ✅           |
+| GNOME Boxes**           | ❌       | ❌          | ❌           |
+
+\* Applications Menu, Background Logo, Launch new instance, Places Status Indicator, Window List and Common.  
+\** This brings in 197 packages (!) and is available as a Flatpak on Flathub.
+
+### Detailed
+
+<details>
+<summary>Full list of packages added by Workstation vs Silverblue (48.7MB)</summary>
+
+```
+  LibRaw-0.20.2-5.fc36.x86_64
+  SDL2-2.0.22-2.fc36.x86_64
+  babl-0.1.92-1.fc36.x86_64
+  baobab-42.0-1.fc36.x86_64
+  brasero-libs-3.12.3-1.fc36.x86_64
+  cheese-2:41.1-2.fc36.x86_64
+  dleyna-connector-dbus-0.3.0-12.fc36.x86_64
+  dleyna-core-0.6.0-13.fc36.x86_64
+  dleyna-renderer-0.6.0-14.fc36.x86_64
+  dleyna-server-0.6.0-13.fc36.x86_64
+  flexiblas-3.2.0-2.fc36.x86_64
+  flexiblas-netlib-3.2.0-2.fc36.x86_64
+  flexiblas-openblas-openmp-3.2.0-2.fc36.x86_64
+  frei0r-plugins-1.7.0-14.fc36.x86_64
+  gavl-1.4.0-20.fc36.x86_64
+  gegl04-0.4.36-1.fc36.x86_64
+  gfbgraph-0.2.4-2.fc36.x86_64
+  gnome-online-miners-3.34.0-10.fc36.x86_64
+  gnome-photos-42.0-2.fc36.x86_64
+  gnome-video-effects-0.5.0-7.fc36.noarch
+  gom-0.4-7.fc36.x86_64
+  grilo-0.3.14-2.fc36.x86_64
+  grilo-plugins-0.3.14-3.fc36.x86_64
+  gstreamer1-plugins-good-gtk-1.20.0-1.fc36.x86_64
+  imath-3.1.5-1.fc36.x86_64
+  jasper-libs-2.0.33-2.fc36.x86_64
+  libdazzle-3.44.0-1.fc36.x86_64
+  libdecor-0.1.0-2.fc36.x86_64
+  libdmapsharing-2.9.41-6.fc36.x86_64
+  libgdither-0.6-26.fc36.x86_64
+  libgfortran-12.1.1-1.fc36.x86_64
+  libgpod-0.8.3-41.fc36.x86_64
+  liboauth-1.0.3-18.fc36.x86_64
+  libpeas-1.32.0-1.fc36.x86_64
+  libpeas-gtk-1.32.0-1.fc36.x86_64
+  libpeas-loader-python3-1.32.0-1.fc36.x86_64
+  libquadmath-12.1.1-1.fc36.x86_64
+  libtomcrypt-1.18.2-14.fc36.x86_64
+  libtommath-1.2.0-7.fc36.x86_64
+  media-player-info-23-10.fc36.noarch
+  openblas-0.3.19-3.fc36.x86_64
+  openblas-openmp-0.3.19-3.fc36.x86_64
+  openexr-libs-3.1.5-1.fc36.x86_64
+  python3-beaker-1.10.0-13.fc36.noarch
+  python3-cffi-1.15.0-5.fc36.x86_64
+  python3-crypto-2.6.1-39.fc36.x86_64
+  python3-cryptography-36.0.0-3.fc36.x86_64
+  python3-mako-1.1.4-7.fc36.noarch
+  python3-markupsafe-2.0.0-3.fc36.x86_64
+  python3-paste-3.5.0-6.fc36.noarch
+  python3-ply-3.11-15.fc36.noarch
+  python3-pyOpenSSL-21.0.0-2.fc36.noarch
+  python3-pycparser-2.20-6.fc36.noarch
+  python3-tempita-0.5.2-2.fc35.noarch
+  rhythmbox-3.4.4-12.fc36.x86_64
+  sg3_utils-libs-1.46-3.fc36.x86_64
+  simple-scan-42.1-1.fc36.x86_64
+  suitesparse-5.10.1-2.fc36.x86_64
+  tbb-2020.3-9.fc35.x86_64
+  totem-1:42.0-1.fc36.x86_64
+```
+</details>
+
+<details>
+<summary>Full list of packages removed by Minimal vs Silverblue (XXMB)</summary>
+
+```
+TODO
+```
+</details>
 
 ## Documentation and Help
 

@@ -31,6 +31,13 @@ packages:
   - simple-scan
   - rhythmbox
   - cheese
+  - gnome-abrt
+  - gnome-shell-extension-apps-menu
+  - gnome-shell-extension-background-logo
+  - gnome-shell-extension-common
+  - gnome-shell-extension-launch-new-instance
+  - gnome-shell-extension-places-menu
+  - gnome-shell-extension-window-list
 
 repos:
   - fedora-36

@@ -172,3 +172,9 @@ desktop_exclude_list:
     - firefox
     - yelp
     - gnome-tour
+    - gnome-shell-extension-apps-menu
+    - gnome-shell-extension-background-logo
+    - gnome-shell-extension-common
+    - gnome-shell-extension-launch-new-instance
+    - gnome-shell-extension-places-menu
+    - gnome-shell-extension-window-list
