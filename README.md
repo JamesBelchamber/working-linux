@@ -9,7 +9,9 @@ New users will see the real power of Silverblue's unique combination of flatpaks
 
 ## Installation
 
-Working Linux is an alternative image for Fedora Silverblue, so be sure to [install Silverblue](https://silverblue.fedoraproject.org/download) first. Once done, open up a Terminal and run the following commands:
+Download the Workstation ISO from [here](https://jamesbelchamber.github.io/working-linux/iso).
+
+If you have already installed Silverblue you can rebase to Working Linux - just open up a Terminal and run the following commands:
 
 ```bash
 sudo ostree remote add --no-gpg-verify working-linux https://jamesbelchamber.github.io/working-linux
