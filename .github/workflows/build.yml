@@ -20,8 +20,8 @@ jobs:
         run: |
             mkdir -p cache repo
             ostree --repo=repo init --mode=archive
-            rpm-ostree compose tree --unified-core --cachedir=cache --repo=repo working-linux-workstation.yaml
-            rpm-ostree compose tree --unified-core --cachedir=cache --repo=repo working-linux-minimal.yaml
+            rpm-ostree compose tree --cachedir=cache --repo=repo working-linux-workstation.yaml
+            rpm-ostree compose tree --cachedir=cache --repo=repo working-linux-minimal.yaml
             ostree --repo=repo summary --update
         
       - name: Deploy to GitHub Pages
