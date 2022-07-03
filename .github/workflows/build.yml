@@ -13,9 +13,9 @@ jobs:
       - name: Install dependencies
         run: dnf install -y rpm-ostree selinux-policy selinux-policy-targeted policycoreutils git wget rsync lorax mock kernel-modules flatpak dbus-daemon
 
-#      - name: Clone repository
-#        uses: actions/checkout@v3
-#
+      - name: Clone repository
+        uses: actions/checkout@v3
+
 #      - name: Build OSTree
 #        run: |
 #            mkdir -p cache repo
@@ -35,7 +35,7 @@ jobs:
             pwd
             mkdir isobuild
             cd isobuild
-            sudo lorax --product=Working Linux --version=36 --release=$(date +%Y%m%d) --source=https://fedora.mirrorservice.org/fedora/linux/releases/36/Everything/x86_64/os --variant=Workstation --nomacboot --isfinal --buildarch=x86_64 --volid=WL-Workstation-ostree-x86_64-36 --add-template=$(pwd)/lorax-templates/lorax-configure-repo.tmpl --add-template=$(pwd)/lorax-templates/lorax-embed-repo.tmpl --add-template=$(pwd)/lorax-templates/lorax-embed-flatpaks.tmpl --add-template-var=ostree_install_repo=https://jamesbelchamber.github.io/working-linux/ --add-template-var=ostree_update_repo=https://jamesbelchamber.github.io/working-linux/ --add-template-var=ostree_osname=working-linux --add-template-var=ostree_oskey=working-linux-36-primary --add-template-var=ostree_install_ref=working-linux/36/x86_64/workstation --add-template-var=ostree_update_ref=working-linux/36/x86_64/workstation --add-template-var=flatpak_remote_name=working-linux --add-template-var=flatpak_remote_url=oci+https://registry-no-cdn.fedoraproject.org --add-template-var=flatpak_remote_refs="runtime/org.fedoraproject.Platform/x86_64/f35 app/org.gnome.baobab/x86_64/stable app/org.gnome.Calculator/x86_64/stable app/org.gnome.Calendar/x86_64/stable app/org.gnome.Characters/x86_64/stable app/org.gnome.clocks/x86_64/stable app/org.gnome.Connections/x86_64/stable app/org.gnome.Contacts/x86_64/stable app/org.gnome.eog/x86_64/stable app/org.gnome.Evince/x86_64/stable app/org.gnome.Extensions/x86_64/stable app/org.gnome.font-viewer/x86_64/stable app/org.gnome.TextEditor/x86_64/stable app/org.gnome.Logs/x86_64/stable app/org.gnome.Maps/x86_64/stable app/org.fedoraproject.MediaWriter/x86_64/stable app/org.gnome.NautilusPreviewer/x86_64/stable app/org.gnome.Weather/x86_64/stable" --logfile=logs --rootfs-size=8
+            sudo lorax --product=Working Linux --version=36 --release=$(date +%Y%m%d) --source=https://fedora.mirrorservice.org/fedora/linux/releases/36/Everything/x86_64/os --variant=Workstation --nomacboot --isfinal --buildarch=x86_64 --volid=WL-Workstation-ostree-x86_64-36 --add-template=/__w/working-linux/working-linux/lorax-templates/lorax-configure-repo.tmpl --add-template=/__w/working-linux/working-linux/lorax-templates/lorax-embed-repo.tmpl --add-template=/__w/working-linux/working-linux/lorax-templates/lorax-embed-flatpaks.tmpl --add-template-var=ostree_install_repo=https://jamesbelchamber.github.io/working-linux/ --add-template-var=ostree_update_repo=https://jamesbelchamber.github.io/working-linux/ --add-template-var=ostree_osname=working-linux --add-template-var=ostree_oskey=working-linux-36-primary --add-template-var=ostree_install_ref=working-linux/36/x86_64/workstation --add-template-var=ostree_update_ref=working-linux/36/x86_64/workstation --add-template-var=flatpak_remote_name=working-linux --add-template-var=flatpak_remote_url=oci+https://registry-no-cdn.fedoraproject.org --add-template-var=flatpak_remote_refs="runtime/org.fedoraproject.Platform/x86_64/f35 app/org.gnome.baobab/x86_64/stable app/org.gnome.Calculator/x86_64/stable app/org.gnome.Calendar/x86_64/stable app/org.gnome.Characters/x86_64/stable app/org.gnome.clocks/x86_64/stable app/org.gnome.Connections/x86_64/stable app/org.gnome.Contacts/x86_64/stable app/org.gnome.eog/x86_64/stable app/org.gnome.Evince/x86_64/stable app/org.gnome.Extensions/x86_64/stable app/org.gnome.font-viewer/x86_64/stable app/org.gnome.TextEditor/x86_64/stable app/org.gnome.Logs/x86_64/stable app/org.gnome.Maps/x86_64/stable app/org.fedoraproject.MediaWriter/x86_64/stable app/org.gnome.NautilusPreviewer/x86_64/stable app/org.gnome.Weather/x86_64/stable" --logfile=logs --rootfs-size=8
             mv Linux/images/boot.iso ../Working-Linux-36-$(date +%Y%m%d).iso
 
       - name: Create release
