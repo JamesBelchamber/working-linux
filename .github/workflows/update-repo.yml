@@ -19,11 +19,12 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: gh-pages
-          path: repo
+          path: working-linux/repo
 
       - name: Build OSTree
         run: |
-            mkdir -p cache repo
+            mkdir -p cache
+            ls -lR
             rpm-ostree compose tree --cachedir=cache --repo=repo working-linux-workstation.yaml
             rpm-ostree compose tree --cachedir=cache --repo=repo working-linux-minimal.yaml
             ostree --repo=repo summary --update
