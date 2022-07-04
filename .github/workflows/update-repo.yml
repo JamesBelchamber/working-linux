@@ -1,0 +1,35 @@
+name: Update Repository
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 0 */1 * *
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: docker.io/fedora:latest
+      options: --privileged --security-opt label:disable
+    steps:
+      - name: Install dependencies
+        run: dnf install -y rpm-ostree selinux-policy selinux-policy-targeted policycoreutils git wget rsync
+
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          path: repo
+
+      - name: Build OSTree
+        run: |
+            mkdir -p cache repo
+            rpm-ostree compose tree --cachedir=cache --repo=repo working-linux-workstation.yaml
+            rpm-ostree compose tree --cachedir=cache --repo=repo working-linux-minimal.yaml
+            ostree --repo=repo summary --update
+        
+      - name: Deploy ostree repository to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: gh-pages
+          folder: repo
