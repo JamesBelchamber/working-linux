@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: gh-pages
-          path: working-linux/repo
+          path: repo
 
       - name: Build OSTree
         run: |
