@@ -23,7 +23,7 @@ jobs:
 
       - name: Build OSTree
         run: |
-            mkdir -p cache
+            mkdir -p cache repo/extensions repo/refs/mirrors repo/refs/remotes repo/state repo/tmp repo/tmp/cache
             ls -lR
             rpm-ostree compose tree --cachedir=cache --repo=repo working-linux-workstation.yaml
             rpm-ostree compose tree --cachedir=cache --repo=repo working-linux-minimal.yaml
